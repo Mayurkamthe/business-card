@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuthStore } from './store/authStore'
+import Landing from './pages/Landing'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
@@ -22,11 +23,12 @@ function AdminRoute({ children }) {
 export default function App() {
   return (
     <Routes>
+      <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/:slug" element={<PublicCard />} />
-      <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>
-        <Route index element={<Navigate to="/dashboard" />} />
+      <Route path="/c/:slug" element={<PublicCard />} />
+      <Route path="/app" element={<PrivateRoute><Layout /></PrivateRoute>}>
+        <Route index element={<Navigate to="/app/dashboard" />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="cards/new" element={<CardEditor />} />
         <Route path="cards/:id/edit" element={<CardEditor />} />

@@ -17,7 +17,7 @@ export default function Register() {
       const { data } = await authAPI.register(form)
       setAuth({ name: data.name, email: data.email, role: data.role }, data.token)
       toast.success('Account created!')
-      navigate('/dashboard')
+      navigate('/app/dashboard')
     } catch (err) {
       toast.error(err.response?.data || 'Registration failed')
     } finally {

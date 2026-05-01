@@ -17,7 +17,7 @@ export default function Login() {
       const { data } = await authAPI.login(form)
       setAuth({ name: data.name, email: data.email, role: data.role }, data.token)
       toast.success('Welcome back!')
-      navigate('/dashboard')
+      navigate('/app/dashboard')
     } catch {
       toast.error('Invalid credentials')
     } finally {

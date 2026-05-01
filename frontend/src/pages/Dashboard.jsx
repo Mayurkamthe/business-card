@@ -30,7 +30,7 @@ export default function Dashboard() {
   }
 
   const copyLink = (slug) => {
-    navigator.clipboard.writeText(`${window.location.origin}/${slug}`)
+    navigator.clipboard.writeText(`${window.location.origin}/c/${slug}`)
     toast.success('Link copied!')
   }
 
@@ -47,7 +47,7 @@ export default function Dashboard() {
           <h1 className="font-display text-3xl font-bold">My Cards</h1>
           <p className="text-slate-500 mt-1">Welcome back, {user?.name} 👋</p>
         </div>
-        <Link to="/cards/new" className="btn-primary flex items-center gap-2">
+        <Link to="/app/cards/new" className="btn-primary flex items-center gap-2">
           <Plus size={18} /> New Card
         </Link>
       </div>
@@ -59,7 +59,7 @@ export default function Dashboard() {
           </div>
           <h3 className="font-display text-xl font-bold mb-2">No cards yet</h3>
           <p className="text-slate-500 mb-6">Create your first digital business card</p>
-          <Link to="/cards/new" className="btn-primary inline-flex items-center gap-2">
+          <Link to="/app/cards/new" className="btn-primary inline-flex items-center gap-2">
             <Plus size={18} /> Create Card
           </Link>
         </div>
@@ -94,16 +94,16 @@ export default function Dashboard() {
                   <button onClick={() => copyLink(card.slug)} className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors">
                     <Copy size={14} className="text-slate-500" />
                   </button>
-                  <a href={`/${card.slug}`} target="_blank" rel="noopener noreferrer"
+                  <a href={`/c/${card.slug}`} target="_blank" rel="noopener noreferrer"
                     className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors">
                     <ExternalLink size={14} className="text-slate-500" />
                   </a>
                 </div>
                 <div className="flex gap-2">
-                  <Link to={`/cards/${card.id}/edit`} className="flex-1 flex items-center justify-center gap-1.5 py-2 text-sm font-medium text-primary hover:bg-primary/5 rounded-lg transition-colors">
+                  <Link to={`/app/cards/${card.id}/edit`} className="flex-1 flex items-center justify-center gap-1.5 py-2 text-sm font-medium text-primary hover:bg-primary/5 rounded-lg transition-colors">
                     <Edit2 size={14} /> Edit
                   </Link>
-                  <Link to={`/cards/${card.id}/analytics`} className="flex-1 flex items-center justify-center gap-1.5 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-lg transition-colors">
+                  <Link to={`/app/cards/${card.id}/analytics`} className="flex-1 flex items-center justify-center gap-1.5 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-lg transition-colors">
                     <BarChart2 size={14} /> Stats
                   </Link>
                   <button onClick={() => handleDelete(card.id)} className="flex-1 flex items-center justify-center gap-1.5 py-2 text-sm font-medium text-red-500 hover:bg-red-50 rounded-lg transition-colors">

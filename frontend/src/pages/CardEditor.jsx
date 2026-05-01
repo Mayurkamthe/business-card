@@ -67,7 +67,7 @@ export default function CardEditor() {
         await cardAPI.create(form)
         toast.success('Card created!')
       }
-      navigate('/dashboard')
+      navigate('/app/dashboard')
     } catch (err) {
       toast.error(err.response?.data || 'Something went wrong')
     } finally {
@@ -80,7 +80,7 @@ export default function CardEditor() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="flex items-center gap-4 mb-8">
-        <button onClick={() => navigate('/dashboard')} className="p-2 hover:bg-slate-100 rounded-xl">
+        <button onClick={() => navigate('/app/dashboard')} className="p-2 hover:bg-slate-100 rounded-xl">
           <ArrowLeft size={20} />
         </button>
         <h1 className="font-display text-3xl font-bold">{isEdit ? 'Edit Card' : 'New Card'}</h1>

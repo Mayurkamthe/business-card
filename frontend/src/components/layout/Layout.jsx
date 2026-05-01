@@ -11,9 +11,9 @@ export default function Layout() {
   const handleLogout = () => { logout(); navigate('/login') }
 
   const links = [
-    { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-    { to: '/cards/new', icon: CreditCard, label: 'New Card' },
-    ...(user?.role === 'ADMIN' ? [{ to: '/admin', icon: Shield, label: 'Admin' }] : []),
+    { to: '/app/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+    { to: '/app/cards/new', icon: CreditCard, label: 'New Card' },
+    ...(user?.role === 'ADMIN' ? [{ to: '/app/admin', icon: Shield, label: 'Admin' }] : []),
   ]
 
   return (

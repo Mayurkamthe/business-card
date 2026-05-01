@@ -21,7 +21,7 @@ public class QRCodeController {
 
     @GetMapping(value = "/qr/{slug}", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<byte[]> generateQR(@PathVariable String slug) throws WriterException, IOException {
-        String url = "http://localhost:3000/" + slug;
+        String url = "http://localhost:3000/c/" + slug;
         QRCodeWriter writer = new QRCodeWriter();
         BitMatrix matrix = writer.encode(url, BarcodeFormat.QR_CODE, 300, 300);
         ByteArrayOutputStream out = new ByteArrayOutputStream();

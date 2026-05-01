@@ -27,7 +27,7 @@ export default function Analytics() {
   return (
     <div className="max-w-3xl mx-auto">
       <div className="flex items-center gap-4 mb-8">
-        <button onClick={() => navigate('/dashboard')} className="p-2 hover:bg-slate-100 rounded-xl">
+        <button onClick={() => navigate('/app/dashboard')} className="p-2 hover:bg-slate-100 rounded-xl">
           <ArrowLeft size={20} />
         </button>
         <h1 className="font-display text-3xl font-bold">Analytics</h1>
