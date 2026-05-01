@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { cardAPI, analyticsAPI } from '../services/api'
-import { Phone, MessageCircle, Globe, MapPin, Instagram, Facebook, Twitter, Linkedin, Youtube, Share2, QrCode } from 'lucide-react'
+import { Phone, MessageCircle, Globe, MapPin, Instagram, Facebook, Twitter, Linkedin, Youtube, Share2, QrCode, UserPlus } from 'lucide-react'
 
 const THEMES = {
   modern: { bg: 'from-indigo-500 to-purple-600', btn: 'bg-indigo-600 hover:bg-indigo-700' },
@@ -25,6 +25,33 @@ export default function PublicCard() {
   }, [slug])
 
   const track = (type) => analyticsAPI.trackClick(slug, type)
+
+  const downloadVCard = () => {
+    const lines = ['BEGIN:VCARD', 'VERSION:3.0']
+    if (card.title) lines.push(`FN:${card.title}`)
+    if (card.tagline) lines.push(`TITLE:${card.tagline}`)
+    if (card.phone) lines.push(`TEL;TYPE=CELL:${card.phone}`)
+    if (card.whatsapp && card.whatsapp !== card.phone) lines.push(`TEL;TYPE=WORK:${card.whatsapp}`)
+    if (card.email) lines.push(`EMAIL:${card.email}`)
+    if (card.website) lines.push(`URL:${card.website}`)
+    if (card.address) lines.push(`ADR;TYPE=WORK:;;${card.address};;;;`)
+    if (card.instagram) lines.push(`X-SOCIALPROFILE;TYPE=instagram:${card.instagram}`)
+    if (card.facebook) lines.push(`X-SOCIALPROFILE;TYPE=facebook:${card.facebook}`)
+    if (card.twitter) lines.push(`X-SOCIALPROFILE;TYPE=twitter:${card.twitter}`)
+    if (card.linkedin) lines.push(`X-SOCIALPROFILE;TYPE=linkedin:${card.linkedin}`)
+    if (card.logoUrl) lines.push(`PHOTO;VALUE=URI:${card.logoUrl}`)
+    lines.push(`NOTE:Shared via CardBiz – ${window.location.href}`)
+    lines.push('END:VCARD')
+
+    const blob = new Blob([lines.join('\r\n')], { type: 'text/vcard;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${card.title.replace(/\s+/g, '-')}.vcf`
+    a.click()
+    URL.revokeObjectURL(url)
+    track('link')
+  }
 
   const share = () => {
     if (navigator.share) {
@@ -148,8 +175,17 @@ export default function PublicCard() {
             </div>
           ))}
 
+          {/* Save Contact CTA */}
+          <div className="px-6 pt-6 pb-3">
+            <button onClick={downloadVCard}
+              className="w-full flex items-center justify-center gap-2.5 py-4 bg-primary text-white rounded-2xl font-semibold text-sm shadow-lg shadow-primary/30 hover:bg-primary-dark active:scale-95 transition-all duration-150">
+              <UserPlus size={18} /> Save Contact
+            </button>
+            <p className="text-center text-xs text-slate-400 mt-2">Downloads a .vcf file — opens directly in Contacts app</p>
+          </div>
+
           {/* Footer actions */}
-          <div className="px-6 py-5 flex gap-3">
+          <div className="px-6 py-3 flex gap-3">
             <button onClick={share}
               className="flex-1 flex items-center justify-center gap-2 py-3 border-2 border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:border-primary hover:text-primary transition-all">
               <Share2 size={16} /> Share
