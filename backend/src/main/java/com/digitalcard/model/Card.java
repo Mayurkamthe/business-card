@@ -47,7 +47,7 @@ public class Card {
     private String youtube;
 
     @Column(name = "is_published")
-    private boolean isPublished = true;
+    private boolean published = true;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();

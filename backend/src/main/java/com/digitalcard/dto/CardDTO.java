@@ -22,7 +22,7 @@ public class CardDTO {
     private String twitter;
     private String linkedin;
     private String youtube;
-    private boolean isPublished;
+    private boolean published;
     private List<SectionDTO> sections;
 
     @Data

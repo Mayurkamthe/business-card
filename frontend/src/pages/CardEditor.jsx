@@ -29,7 +29,7 @@ const defaultForm = {
   title: '', theme: 'modern', phone: '', whatsapp: '', email: '',
   website: '', address: '', mapLink: '', logoUrl: '', tagline: '',
   instagram: '', facebook: '', twitter: '', linkedin: '', youtube: '',
-  isPublished: true, sections: [],
+  published: true, sections: [],
 }
 
 export default function CardEditor() {
@@ -144,14 +144,14 @@ export default function CardEditor() {
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.9rem 1rem', background: 'var(--surface-2)', borderRadius: 12, border: '1.5px solid var(--border)' }}>
                       <div style={{ position: 'relative', width: 44, height: 24 }}>
-                        <input type="checkbox" id="pub" checked={form.isPublished} onChange={e => setForm(f => ({ ...f, isPublished: e.target.checked }))}
+                        <input type="checkbox" id="pub" checked={form.published} onChange={e => setForm(f => ({ ...f, published: e.target.checked }))}
                           style={{ position: 'absolute', opacity: 0, width: 0, height: 0 }} />
-                        <div onClick={() => setForm(f => ({ ...f, isPublished: !f.isPublished }))} style={{
+                        <div onClick={() => setForm(f => ({ ...f, published: !f.published }))} style={{
                           width: 44, height: 24, borderRadius: 12, cursor: 'pointer', transition: 'background 0.2s',
-                          background: form.isPublished ? 'var(--rose)' : 'var(--border-strong)', position: 'relative',
+                          background: form.published ? 'var(--rose)' : 'var(--border-strong)', position: 'relative',
                         }}>
                           <div style={{
-                            position: 'absolute', top: 3, left: form.isPublished ? 23 : 3, width: 18, height: 18,
+                            position: 'absolute', top: 3, left: form.published ? 23 : 3, width: 18, height: 18,
                             borderRadius: '50%', background: '#fff', transition: 'left 0.2s',
                             boxShadow: '0 1px 4px rgba(0,0,0,0.2)',
                           }} />
